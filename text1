@@ -1,0 +1,73 @@
+music_name = "sound/B.mp3"
+let play_btn = document.querySelector("#play");
+let range = document.querySelector("#range");
+let pre= document.querySelector("#pre");
+let next = document.querySelector("#next");
+let total_time = 0;
+let currentTime = 0;
+let isPlaying = false;
+let song = new Audio();
+window.onload = playSong;
+
+const songi=
+[{
+    name:"B"
+},
+{
+    name:"G"
+},
+{
+    name:"M"
+},
+{
+    name:"P"
+}]
+function playSong(){
+    song.src = "sound/B.mp3";
+    console.log(song)
+    
+    
+    play_btn.addEventListener('click',function(){
+        if(!isPlaying){
+            song.play();
+            isPlaying = true;
+            total_time = song.duration;
+            range.max = total_time;
+            
+        }else{
+            song.pause();
+            isPlaying = false;
+            
+        }
+        song.addEventListener('timeupdate',()=>{
+            range.value = song.currentTime;
+        })
+
+        range.addEventListener('change',()=>{
+            song.currentTime = range.value;})
+
+        song.addEventListener('ended',()=>{
+            song.currentTime = 0
+            song.pause();
+            isPlaying = false;
+            range.value = 0;
+            
+        })
+               
+})
+
+}
+
+const loadsong=(songi)=>{
+    song.src="sound/"+songi.name+".mp3";
+
+}
+
+
+songindex=1;
+const nextsong=()=>{
+    loadsong(songi[songindex])
+}
+
+next.addEventListener("click",nextsong)
+

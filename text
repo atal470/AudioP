@@ -1,0 +1,7 @@
+<div class="inner">
+        
+        <button class="next"  onclick="previousfunction()" >⏮</button>
+        <button class="play playfunction">▶</button>
+        <button class="play pausefunction" >⏸</button>
+        <button class="next nextfunction">⏭</button>
+    </div>
